@@ -15,6 +15,8 @@
 
 Use this area to explain what problem your app is solving, and who are the people who have this problem.
 
+Athelets today do not have a centralized site to view their Atheletic activities from runs, cycling and swimming. Today Atheletes depend on their phones and various activity tracking apps such as Strava, Nike - Run Club, Asics - RunKeeper, UnderArmor - Map my Run,
+
 ## User Stories
 
 List of stories users should experience when using your application.

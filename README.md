@@ -16,4 +16,8 @@
 
 
  # Technologies used 
- - OAuth2 for authentication 
+ - OAuth2 for authentication
+ - Javascript
+ - HTML
+ - CSS
+  
