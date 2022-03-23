@@ -6,7 +6,7 @@
 | Field | Detail |
 |-------|--------|
 | Project Name | Atheletes Activity Page|
-| Description | Atheletes need an easy to access website to view their atheletic activities and visualization. |
+| Description | Atheletes need an easy to access website to view their atheletic activities across different plateforms and their visualization. |
 | Developers | Kmachappy - Alejandro Rojas |
 | Live Website |  AtheletesPage.com - AthletesActivity.com - Atheletesview.com |
 | Repo |  |
