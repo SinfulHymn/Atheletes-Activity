@@ -13,3 +13,7 @@
 
 # activity example I'm trying to display 
  - https://www.strava.com/activities/6867917209
+
+
+ # Technologies used 
+ - OAuth2 for authentication 
