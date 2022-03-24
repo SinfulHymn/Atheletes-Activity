@@ -7,6 +7,8 @@ const allActivitiesAPI = `https://www.strava.com/api/v3/athlete/activities?acces
 const activityAPI = ""
 const reAuthAPI = "https://www.strava.com/oauth/token?client_id=80013&client_secret=4c3e0e3af32ed51d86a5c7e045fb4fe4422387e9&refresh_token=82366156b53f4a94b0e25147c8ab47c73e2573e7&grant_type=refresh_token"
 
+
+
 getRequest = url =>{
     $.get({
         url: url
