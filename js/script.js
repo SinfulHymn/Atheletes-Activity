@@ -20,6 +20,9 @@ getAllActivities = access_token => {
     let allActivitiesLink =`https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}`
     getRequest(allActivitiesLink)
 }
+getActivity = access_token => {
+    let activityLink = ``
+}
 
 
 // since the access toke expires I am making sure i always get a new valid access token 
@@ -29,7 +32,7 @@ reAuthToken = () => {
     $.post({
         url: reAuthAPI
     }).then(data =>{
-        // console.log(data.access_token)
+         console.log(data.access_token)
         // console.log(data)
         console.log(convertEpoch(data.expires_at))
         //pipe access_token to get all activities
