@@ -1,11 +1,25 @@
-let accessToken,
+let accessToken2,
     accessToken1 = "ff3dc6a967c906ba06d917aa822e1fd711d44e8a",
     refreshToken = "",
-    userID = ""
+    client_id = "80013"
 
 const allActivitiesAPI = `https://www.strava.com/api/v3/athlete/activities?access_token=${accessToken1}`
 const activityAPI = ""
 const reAuthAPI = "https://www.strava.com/oauth/token?client_id=80013&client_secret=4c3e0e3af32ed51d86a5c7e045fb4fe4422387e9&refresh_token=82366156b53f4a94b0e25147c8ab47c73e2573e7&grant_type=refresh_token"
+
+getRequest = url =>{
+    $.get({
+        url: url
+    }).then(data =>{
+        console.log(data)
+    })
+}
+
+//api request that get all activites
+getAllActivities = access_token => {
+    let allActivitiesLink =`https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}`
+    getRequest(allActivitiesLink)
+}
 
 
 // since the access toke expires I am making sure i always get a new valid access token 
@@ -15,24 +29,15 @@ reAuthToken = () => {
     $.post({
         url: reAuthAPI
     }).then(data =>{
-        //console.log(data.access_token)
-        console.log(data)
-        //console.log(data.expires_at)
-        //console.log(typeof(data.expires_at))
+        // console.log(data.access_token)
+        // console.log(data)
         console.log(convertEpoch(data.expires_at))
+        //pipe access_token to get all activities
+        getAllActivities(data.access_token)
         
     })
 }
 
-//api request that get all activites
-getAllActivities = () => {
-    $.get({
-        url: allActivitiesAPI
-    }).then(data => {
-        console.log(data)
-    })
-
-}
 // converts epoch timestamp to a human readable timestamp
 convertEpoch = epochTimeStamp =>{
     let dateToMilli = new Date(epochTimeStamp*1000),
@@ -72,7 +77,7 @@ convertEpoch = epochTimeStamp =>{
 
 
 reAuthToken()
-getAllActivities()
+// getAllActivities()
 
 // make the box hover at the start, add the link from the start to allow the user to login and then his data will then propagate on the page .
 
