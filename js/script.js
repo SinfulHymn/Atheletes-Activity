@@ -8,12 +8,14 @@ const activityAPI = ""
 const reAuthAPI = "https://www.strava.com/oauth/token?client_id=80013&client_secret=4c3e0e3af32ed51d86a5c7e045fb4fe4422387e9&refresh_token=82366156b53f4a94b0e25147c8ab47c73e2573e7&grant_type=refresh_token"
 
 mapRender = polyline =>{
-    // var map = L.map('map',{
-    //     center: [34.07537089660764, -118.44274453818798]
-    //     zoom: 12
-    // })
-    var map = L.map('map').setView([34.07537089660764, -118.44274453818798], 12);
-    // var marker = L.marker([51.5, -0.09]).addTo(map);
+    var map = L.map('map',{
+        center: [34.07579760955182, -118.36575474764047],
+        zoom: 12,
+        zoomControl: false
+    })
+    
+    var marker = L.marker([34.07579760955182, -118.36575474764047]).addTo(map)
+
     // var circle = L.circle([51.508, -0.11], {
     //     color: 'red',
     //     fillColor: '#f03',

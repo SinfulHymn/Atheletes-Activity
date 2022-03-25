@@ -3,8 +3,14 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
+
 #map { 
-    height: 500px;
+    height: 600px;
     width: 90%; 
 }
