@@ -21,6 +21,8 @@ mapRender = data =>{
         [51.503, -0.06],
         [51.51, -0.047]
     ]).addTo(map);
+    var coordinates = L.Polyline.fromEncoded(data).getLatLngs()
+    console.log(coordinates)
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -38,12 +40,12 @@ getRequest = url =>{
         url: url
     }).then(data =>{
         console.log(data)
-        console.log(data[0].map.summary_polyline)
+        //console.log(data[0].map.summary_polyline)
         // loop through all objects in array to list all runs and data
         // data.forEach((Element, index) => {
         //     console.log(index)
         // })
-        mapRender()
+        mapRender(data[0].map.summary_polyline) 
         
     })
 }
