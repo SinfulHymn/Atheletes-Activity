@@ -38,6 +38,11 @@ getRequest = url =>{
         url: url
     }).then(data =>{
         console.log(data)
+        console.log(data[0].map.summary_polyline)
+        // loop through all objects in array to list all runs and data
+        // data.forEach((Element, index) => {
+        //     console.log(index)
+        // })
         mapRender()
         
     })
@@ -48,9 +53,9 @@ getAllActivities = access_token => {
     let allActivitiesLink =`https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}`
     getRequest(allActivitiesLink)
 }
-getActivity = access_token => {
-    let activityLink = ``
-}
+// getActivity = access_token => {
+//     let activityLink = ``
+// }
 
 
 // since the access toke expires I am making sure i always get a new valid access token 
