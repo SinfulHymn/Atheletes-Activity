@@ -7,7 +7,30 @@ const allActivitiesAPI = `https://www.strava.com/api/v3/athlete/activities?acces
 const activityAPI = ""
 const reAuthAPI = "https://www.strava.com/oauth/token?client_id=80013&client_secret=4c3e0e3af32ed51d86a5c7e045fb4fe4422387e9&refresh_token=82366156b53f4a94b0e25147c8ab47c73e2573e7&grant_type=refresh_token"
 
+mapRender = data =>{
+    var map = L.map('map').setView([51.505, -0.09], 13);
+    var marker = L.marker([51.5, -0.09]).addTo(map);
+    var circle = L.circle([51.508, -0.11], {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 500
+    }).addTo(map);
+    var polygon = L.polygon([
+        [51.509, -0.08],
+        [51.503, -0.06],
+        [51.51, -0.047]
+    ]).addTo(map);
 
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1Ijoia21hY2hhcHB5IiwiYSI6ImNsMTYyY2RhODA1MnAzYm13eW1vNGlqa3oifQ.u34CHpBVa9Nk_584VZlDjA'
+    }).addTo(map);
+}
 
 
 getRequest = url =>{
@@ -15,28 +38,8 @@ getRequest = url =>{
         url: url
     }).then(data =>{
         console.log(data)
-        var map = L.map('map').setView([51.505, -0.09], 13);
-        var marker = L.marker([51.5, -0.09]).addTo(map);
-        var circle = L.circle([51.508, -0.11], {
-            color: 'red',
-            fillColor: '#f03',
-            fillOpacity: 0.5,
-            radius: 500
-        }).addTo(map);
-        var polygon = L.polygon([
-            [51.509, -0.08],
-            [51.503, -0.06],
-            [51.51, -0.047]
-        ]).addTo(map);
-
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
-            id: 'mapbox/streets-v11',
-            tileSize: 512,
-            zoomOffset: -1,
-            accessToken: 'pk.eyJ1Ijoia21hY2hhcHB5IiwiYSI6ImNsMTYyY2RhODA1MnAzYm13eW1vNGlqa3oifQ.u34CHpBVa9Nk_584VZlDjA'
-        }).addTo(map);
+        mapRender()
+        
     })
 }
 
