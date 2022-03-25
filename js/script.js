@@ -7,21 +7,25 @@ const allActivitiesAPI = `https://www.strava.com/api/v3/athlete/activities?acces
 const activityAPI = ""
 const reAuthAPI = "https://www.strava.com/oauth/token?client_id=80013&client_secret=4c3e0e3af32ed51d86a5c7e045fb4fe4422387e9&refresh_token=82366156b53f4a94b0e25147c8ab47c73e2573e7&grant_type=refresh_token"
 
-mapRender = data =>{
-    var map = L.map('map').setView([51.505, -0.09], 13);
-    var marker = L.marker([51.5, -0.09]).addTo(map);
-    var circle = L.circle([51.508, -0.11], {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5,
-        radius: 500
-    }).addTo(map);
-    var polygon = L.polygon([
-        [51.509, -0.08],
-        [51.503, -0.06],
-        [51.51, -0.047]
-    ]).addTo(map);
-    var coordinates = L.Polyline.fromEncoded(data).getLatLngs()
+mapRender = polyline =>{
+    // var map = L.map('map',{
+    //     center: [34.07537089660764, -118.44274453818798]
+    //     zoom: 12
+    // })
+    var map = L.map('map').setView([34.07537089660764, -118.44274453818798], 12);
+    // var marker = L.marker([51.5, -0.09]).addTo(map);
+    // var circle = L.circle([51.508, -0.11], {
+    //     color: 'red',
+    //     fillColor: '#f03',
+    //     fillOpacity: 0.5,
+    //     radius: 500
+    // }).addTo(map);
+    // var polygon = L.polygon([
+    //     [51.509, -0.08],
+    //     [51.503, -0.06],
+    //     [51.51, -0.047]
+    // ]).addTo(map);
+    var coordinates = L.Polyline.fromEncoded(polyline).getLatLngs()
     console.log(coordinates)
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -32,6 +36,16 @@ mapRender = data =>{
         zoomOffset: -1,
         accessToken: 'pk.eyJ1Ijoia21hY2hhcHB5IiwiYSI6ImNsMTYyY2RhODA1MnAzYm13eW1vNGlqa3oifQ.u34CHpBVa9Nk_584VZlDjA'
     }).addTo(map);
+
+    L.polyline(
+        coordinates,
+        {
+            color: "green",
+            weight: 5,
+            opacity: .7,
+            lineJoin: 'round'
+        }       
+    ).addTo(map)
 }
 
 
@@ -39,7 +53,7 @@ getRequest = url =>{
     $.get({
         url: url
     }).then(data =>{
-        console.log(data)
+        console.log(data[0])
         //console.log(data[0].map.summary_polyline)
         // loop through all objects in array to list all runs and data
         // data.forEach((Element, index) => {
