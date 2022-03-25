@@ -7,11 +7,15 @@ const allActivitiesAPI = `https://www.strava.com/api/v3/athlete/activities?acces
 const activityAPI = ""
 const reAuthAPI = "https://www.strava.com/oauth/token?client_id=80013&client_secret=4c3e0e3af32ed51d86a5c7e045fb4fe4422387e9&refresh_token=82366156b53f4a94b0e25147c8ab47c73e2573e7&grant_type=refresh_token"
 
+//continue working on attributes and changing map color
 mapRender = polyline =>{
     var map = L.map('map',{
         center: [34.07579760955182, -118.36575474764047],
-        zoom: 12,
-        zoomControl: false
+        zoom: 13,
+        zoomSnap: .1,
+        zoomDelta: .4,
+        wheelPxPerZoomLevel: 400,
+        
     })
     
     var marker = L.marker([34.07579760955182, -118.36575474764047]).addTo(map)
@@ -28,10 +32,11 @@ mapRender = polyline =>{
     //     [51.51, -0.047]
     // ]).addTo(map);
     var coordinates = L.Polyline.fromEncoded(polyline).getLatLngs()
-    console.log(coordinates)
+    //console.log(coordinates)
 
+    // mapbox://styles/kmachappy/cl162wrgb001615o2i6699d2y
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        // attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
         id: 'mapbox/streets-v11',
         tileSize: 512,
@@ -50,18 +55,30 @@ mapRender = polyline =>{
     ).addTo(map)
 }
 
+// render data[0] onto document
+dataRender = data0 => {
+    console.log(data0)
+    $('#marathon-title').text(data0.name)
+    const miles = convertToMiles(data0.distance).toFixed(2)
+    console.log(miles)
+    $('#main-data-row1').text(`Distance: ${miles}mi`)
 
+
+}
+
+//ajax request from getAllActivities data
 getRequest = url =>{
     $.get({
         url: url
     }).then(data =>{
-        console.log(data[0])
+        //console.log(data[0])
         //console.log(data[0].map.summary_polyline)
         // loop through all objects in array to list all runs and data
         // data.forEach((Element, index) => {
         //     console.log(index)
         // })
         mapRender(data[0].map.summary_polyline) 
+        dataRender(data[0])
         
     })
 }
@@ -83,9 +100,9 @@ reAuthToken = () => {
     $.post({
         url: reAuthAPI
     }).then(data =>{
-         console.log(data.access_token)
+         //console.log(data.access_token)
         // console.log(data)
-        console.log(convertEpoch(data.expires_at))
+        console.log(`${convertEpoch(data.expires_at)} : ${data.access_token}`)
         //pipe access_token to get all activities
         getAllActivities(data.access_token)
         
@@ -119,6 +136,9 @@ convertEpoch = epochTimeStamp =>{
     return timeStamp            
 }
 
+convertToMiles = meters => meters*0.000621371192
+
+
 // getActivity= () => {
 //     $.ajax({
 //         url: 
@@ -131,7 +151,5 @@ convertEpoch = epochTimeStamp =>{
 
 
 reAuthToken()
-// getAllActivities()
-
 // make the box hover at the start, add the link from the start to allow the user to login and then his data will then propagate on the page .
 
