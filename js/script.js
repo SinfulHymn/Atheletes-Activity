@@ -74,6 +74,10 @@ dataRender = data0 => {
     // // console.log(date)
 }
 
+milesRender = splits => {
+    splits.forEach(mile => console.log(mile))
+
+}
 //how to split the data from both apis here
 //ajax request from getAllActivities data
 getRequest = url =>{
@@ -100,7 +104,7 @@ getAllActivities = access_token => {
     $.get({
         url: url
     }).then(data =>{
-        console.log(data)
+        //console.log(data)
         mapRender(data[0].map.summary_polyline) 
         dataRender(data[0])
         
@@ -112,10 +116,12 @@ getActivity = access_token => {
     $.get({
         url: url
     }).then(data =>{
-        console.log(data.splits_standard)
+        console.log(data)
+        //console.log(data.splits_standard)
         const splits = data.splits_standard
         // console.log(splits)
-        splits.forEach(mile => console.log(mile))
+        milesRender(splits)
+        
         
         
     })
