@@ -66,7 +66,7 @@ dataRender = data0 => {
     let elapsedTime = new Date(data0.elapsed_time * 1000).toISOString().substr(11, 8)
     //console.log(elapsedTime)
     const $date = $('<span id=elapsed-time>')
-    $date.text(`Elapsed Time: ${elapsedTime}`)
+    $date.text(` Elapsed Time: ${elapsedTime}`)
     $('#main-data-row1').append($date)
     
     // console.log($date)
@@ -75,7 +75,18 @@ dataRender = data0 => {
 }
 
 milesRender = splits => {
-    splits.forEach(mile => console.log(mile))
+    console.log(splits)
+    console.log(splits[0])
+    const splitsContainer = $('#splits')
+    //make a for loop that will append 
+    splits.forEach((mile, index) => {
+        const spanMile = $(`<div id=mile-split${index+1}>`)
+        
+        spanMile.html(`<span id=mile-idex${index+1}>test</span>`)
+        splitsContainer.append(spanMile)
+        console.log(spanMile)
+        // console.log(mile)
+    })
 
 }
 //how to split the data from both apis here
@@ -106,9 +117,7 @@ getAllActivities = access_token => {
     }).then(data =>{
         //console.log(data)
         mapRender(data[0].map.summary_polyline) 
-        dataRender(data[0])
-        
-        
+        dataRender(data[0]) 
     })
 }
 getActivity = access_token => {
@@ -130,8 +139,6 @@ getActivity = access_token => {
     // console.log(test)
     
 }
-
-
 // since the access toke expires I am making sure i always get a new valid access token 
 // make this into a post request 
 // uses refreshToken to get new accessToken
@@ -197,3 +204,7 @@ secondsToTime = seconds => {
 reAuthToken()
 // make the box hover at the start, add the link from the start to allow the user to login and then his data will then propagate on the page .
 
+////////////////////////////
+// questions
+////////////////////////////
+// ask how to make my convert secondstoTime function to work 
