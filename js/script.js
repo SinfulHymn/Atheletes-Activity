@@ -62,14 +62,16 @@ dataRender = data0 => {
     // console.log(data0)
     $('#marathon-title').text(data0.name)
     const miles = convertToMiles(data0.distance).toFixed(2)
-    $('#main-data-row1').text(`Distance: ${miles}mi`)
+    $('#main-data-row1').html(`<span id=total-distance>Distance: ${miles}mi`)
    
-    let elapsedTime = new Date(data0.elapsed_time * 1000).toISOString().substr(11, 8)
-    //console.log(elapsedTime)
+    let elapsedTime = new Date(data0.elapsed_time * 1000).toISOString().substr(12, 8)
+    // console.log(elapsedTime)
+    // $('#main-data-row1').html(`<span id=elapsed-time> Elapsed Time: ${elapsedTime}`)
+    // to be able to add another element to the same div I need to append it.
+    //create the elements, give element content, then append to div
     const $date = $('<span id=elapsed-time>')
     $date.text(` Elapsed Time: ${elapsedTime}`)
     $('#main-data-row1').append($date)
-
 }
 
 milesRender = splits => {
@@ -87,12 +89,44 @@ milesRender = splits => {
     })
 }
 
-moreDataRender = data =>{
-    console.log(data)
+titleDataRender = data =>{
+    // console.log(data)
     $('#marathon-subtitle').text(data.description)
     $('#splits-title').text('Miles Splits')
-    
+}
 
+avgData = data =>{
+    console.log(data)
+    const leftColm = $('.left-col-container')
+    const totalMile = convertToMiles(data.distance).toFixed(2)
+    const $name = $(`<div id=left-name>Name: ${data.name}</div>`)
+    leftColm.append($name)
+    let elapsedTime = new Date(data.elapsed_time * 1000).toISOString().substr(12,8)
+    const $time = $(`<div id=left-time>Total Time: ${elapsedTime}</div>`)
+    leftColm.append($time)
+    const $distance = $(`<div id=left-dist>Total Distance: ${totalMile}/mi</div>`)
+    leftColm.append($distance)
+    const $calories = $(`<div id=left-calories>Total Calories: ${data.calories}/cal</div>`)
+    leftColm.append($calories)
+    const $heartRate = $(`<div id=left-heart>Avg Heart Rate: ${data.average_heartrate.toFixed(0)}/bpm</div>`)
+    leftColm.append($heartRate)
+    const avgmph = mpsToMph(data.average_speed).toFixed(2)
+    const $speed = $(`<div id=left-speed>Avg Speed: ${avgmph}/mph</div>`)
+    leftColm.append($speed)
+    const feet = metersToFeet(data.elev_high).toFixed(2)
+    const $highElev = $(`<div id=left-highelev>Highest Elevation: ${feet}/ft </div>`)
+    leftColm.append($highElev)
+    const $maxheart = $(`<div id=left-maxheart>Max Heart Rate: ${data.max_heartrate}/bpm</div>`)
+    leftColm.append($maxheart)
+    const maxmph = mpsToMph(data.max_speed).toFixed(2)
+    const $maxspeed = $(`<div id=left-maxspped>Max Speed: ${maxmph}/mph</div>`)
+    leftColm.append($maxspeed)
+    const $device = $(`<div id=left-device>Device Used: ${data.device_name}</div>`)
+    leftColm.append($device)
+
+
+    // const $
+    // leftColm.text('test')
 }
 
 
@@ -138,7 +172,8 @@ getActivity = access_token => {
         const splits = data.splits_standard
         // console.log(splits)
         milesRender(splits, data)
-        moreDataRender(data)
+        titleDataRender(data)
+        avgData(data)
     })
 
     
@@ -188,11 +223,12 @@ convertEpoch = epochTimeStamp =>{
 }
 
 convertToMiles = meters => meters*0.000621371192
+metersToFeet = meters => meters*3.2808
+mpsToMph = mps => Math.round(mps * 3600 / 1610.3*1000)/1000
 secondsToTime = seconds => {
     let date = new Date(seconds * 1000).toISOString().substr(11, 8)
     return date
 }
-mpsToMph = mps => Math.round(mps * 3600 / 1610.3*1000)/1000
 
 
 
