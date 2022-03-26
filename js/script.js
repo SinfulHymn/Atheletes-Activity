@@ -32,6 +32,7 @@ mapRender = polyline =>{
     //     [51.51, -0.047]
     // ]).addTo(map);
     var coordinates = L.Polyline.fromEncoded(polyline).getLatLngs()
+    //array of coordinate of the miles
     //console.log(coordinates)
 
     // mapbox://styles/kmachappy/cl162wrgb001615o2i6699d2y
@@ -57,13 +58,20 @@ mapRender = polyline =>{
 
 // render data[0] onto document
 dataRender = data0 => {
-    console.log(data0)
+    //console.log(data0)
     $('#marathon-title').text(data0.name)
     const miles = convertToMiles(data0.distance).toFixed(2)
-    console.log(miles)
     $('#main-data-row1').text(`Distance: ${miles}mi`)
-
-
+   
+    let elapsedTime = new Date(data0.elapsed_time * 1000).toISOString().substr(11, 8)
+    //console.log(elapsedTime)
+    const $date = $('<span id=elapsed-time>')
+    $date.text(`Elapsed Time: ${elapsedTime}`)
+    $('#main-data-row1').append($date)
+    
+    // console.log($date)
+    // console.log(secondsToTime(data0.elasped_time))
+    // // console.log(date)
 }
 
 //ajax request from getAllActivities data
@@ -71,7 +79,7 @@ getRequest = url =>{
     $.get({
         url: url
     }).then(data =>{
-        //console.log(data[0])
+        console.log(data)
         //console.log(data[0].map.summary_polyline)
         // loop through all objects in array to list all runs and data
         // data.forEach((Element, index) => {
@@ -86,11 +94,21 @@ getRequest = url =>{
 //api request that get all activites
 getAllActivities = access_token => {
     let allActivitiesLink =`https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}`
+    //console.log(allActivitiesLink)
     getRequest(allActivitiesLink)
 }
-// getActivity = access_token => {
-//     let activityLink = ``
-// }
+getActivity = access_token => {
+    let activityLink = `https://www.strava.com/api/v3/activities/6867917209?access_token=${access_token}`
+    // let activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}`
+    
+    getRequest(activityLink)
+    // $.get({
+    //     url: activityLink
+    // }).then(data =>{
+    //     console.log(data)
+
+    // })
+}
 
 
 // since the access toke expires I am making sure i always get a new valid access token 
@@ -100,12 +118,13 @@ reAuthToken = () => {
     $.post({
         url: reAuthAPI
     }).then(data =>{
+        const accessToken = data.access_token
          //console.log(data.access_token)
         // console.log(data)
         console.log(`${convertEpoch(data.expires_at)} : ${data.access_token}`)
         //pipe access_token to get all activities
-        getAllActivities(data.access_token)
-        
+        getAllActivities(accessToken)
+        getActivity(accessToken)
     })
 }
 
@@ -137,6 +156,10 @@ convertEpoch = epochTimeStamp =>{
 }
 
 convertToMiles = meters => meters*0.000621371192
+secondsToTime = seconds => {
+    let date = new Date(seconds * 1000).toISOString().substr(11, 8)
+    return date
+}
 
 
 // getActivity= () => {
