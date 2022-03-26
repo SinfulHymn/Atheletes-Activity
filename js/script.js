@@ -56,9 +56,10 @@ mapRender = polyline =>{
     ).addTo(map)
 }
 
-// render data[0] onto document
+// render data[0] onto document doesn't contain all activity details 
+// all activities seems to not put all data by default like activity by id
 dataRender = data0 => {
-    //console.log(data0)
+    // console.log(data0)
     $('#marathon-title').text(data0.name)
     const miles = convertToMiles(data0.distance).toFixed(2)
     $('#main-data-row1').text(`Distance: ${miles}mi`)
@@ -68,27 +69,33 @@ dataRender = data0 => {
     const $date = $('<span id=elapsed-time>')
     $date.text(` Elapsed Time: ${elapsedTime}`)
     $('#main-data-row1').append($date)
-    
-    // console.log($date)
-    // console.log(secondsToTime(data0.elasped_time))
-    // // console.log(date)
+
 }
 
 milesRender = splits => {
-    console.log(splits)
-    console.log(splits[0])
+    // console.log(splits)
     const splitsContainer = $('#splits')
-    //make a for loop that will append 
+    //make a for loop that will append all mile splits
     splits.forEach((mile, index) => {
         const spanMile = $(`<div id=mile-split${index+1}>`)
-        
-        spanMile.html(`<span id=mile-idex${index+1}>test</span>`)
+        let elapsedTime = new Date(mile.elapsed_time * 1000).toISOString().substr(14, 5)
+
+        let mph = mpsToMph(mile.average_speed)
+
+        spanMile.html(`<span class="mile-index">Mile: ${mile.split} </span><span class="pace-index"> Pace: ${elapsedTime}/mi </span> <span class="heartrate-index"> HeartRate: ${(mile.average_heartrate).toFixed(0)}/bpm </span> <span class="mph-index">Speed: ${mph.toFixed(2)}/mph`)
         splitsContainer.append(spanMile)
-        console.log(spanMile)
-        // console.log(mile)
     })
+}
+
+moreDataRender = data =>{
+    console.log(data)
+    $('#marathon-subtitle').text(data.description)
+    $('#splits-title').text('Miles Splits')
+    
 
 }
+
+
 //how to split the data from both apis here
 //ajax request from getAllActivities data
 getRequest = url =>{
@@ -120,23 +127,20 @@ getAllActivities = access_token => {
         dataRender(data[0]) 
     })
 }
+
 getActivity = access_token => {
     let url = `https://www.strava.com/api/v3/activities/6867917209?access_token=${access_token}`
     $.get({
         url: url
     }).then(data =>{
-        console.log(data)
+        // console.log(data)
         //console.log(data.splits_standard)
         const splits = data.splits_standard
         // console.log(splits)
-        milesRender(splits)
-        
-        
-        
+        milesRender(splits, data)
+        moreDataRender(data)
     })
-    // let test = getRequest(activityLink)
-    // console.log(typeof(test))
-    // console.log(test)
+
     
 }
 // since the access toke expires I am making sure i always get a new valid access token 
@@ -188,13 +192,8 @@ secondsToTime = seconds => {
     let date = new Date(seconds * 1000).toISOString().substr(11, 8)
     return date
 }
+mpsToMph = mps => Math.round(mps * 3600 / 1610.3*1000)/1000
 
-
-// getActivity= () => {
-//     $.ajax({
-//         url: 
-//     })
-// }
 
 
 
