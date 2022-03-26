@@ -74,6 +74,7 @@ dataRender = data0 => {
     // // console.log(date)
 }
 
+//how to split the data from both apis here
 //ajax request from getAllActivities data
 getRequest = url =>{
     $.get({
@@ -87,27 +88,41 @@ getRequest = url =>{
         // })
         mapRender(data[0].map.summary_polyline) 
         dataRender(data[0])
+        // return data
         
     })
 }
 
 //api request that get all activites
 getAllActivities = access_token => {
-    let allActivitiesLink =`https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}`
-    //console.log(allActivitiesLink)
-    getRequest(allActivitiesLink)
+    let url =`https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}`
+    // getRequest(allActivitiesLink)
+    $.get({
+        url: url
+    }).then(data =>{
+        console.log(data)
+        mapRender(data[0].map.summary_polyline) 
+        dataRender(data[0])
+        
+        
+    })
 }
 getActivity = access_token => {
-    let activityLink = `https://www.strava.com/api/v3/activities/6867917209?access_token=${access_token}`
-    // let activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}`
+    let url = `https://www.strava.com/api/v3/activities/6867917209?access_token=${access_token}`
+    $.get({
+        url: url
+    }).then(data =>{
+        console.log(data.splits_standard)
+        const splits = data.splits_standard
+        // console.log(splits)
+        splits.forEach(mile => console.log(mile))
+        
+        
+    })
+    // let test = getRequest(activityLink)
+    // console.log(typeof(test))
+    // console.log(test)
     
-    getRequest(activityLink)
-    // $.get({
-    //     url: activityLink
-    // }).then(data =>{
-    //     console.log(data)
-
-    // })
 }
 
 

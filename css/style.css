@@ -1,7 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+:root{
+    --main-color: #6a7d74;
+    --pink-color: #A29199;
+    --text-color: #e3e7e5;
+    --title-color:  #3F4B45;
+    --container-color:  #81768B;
 
+}
 
 body{
+    color: var(--text-color);
     background-image: linear-gradient(to top, #3d3a40, #3b3941, #383842, #353744, #303645, #343d4c, #374353, #3b4a5a, #4a5a69, #596b79, #697c89, #7a8d99);
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -23,6 +31,9 @@ header{
     font-size: 16px;
     color: #ecf0f1;
     text-decoration: none;
+}
+h2{
+    color: var(--pink-color);
 }
 .nav_links a{
     padding: 0px 20px;
