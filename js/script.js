@@ -1,17 +1,16 @@
-let accessToken2,
-    accessToken1 = "ff3dc6a967c906ba06d917aa822e1fd711d44e8a",
-    refreshToken = "",
-    client_id = "80013"
+// let accessToken2,
+//     accessToken1 = "ff3dc6a967c906ba06d917aa822e1fd711d44e8a",
+//     refreshToken = "",
+//     client_id = "80013"
 
-const allActivitiesAPI = `https://www.strava.com/api/v3/athlete/activities?access_token=${accessToken1}`
-const activityAPI = ""
-const reAuthAPI = "https://www.strava.com/oauth/token?client_id=80013&client_secret=4c3e0e3af32ed51d86a5c7e045fb4fe4422387e9&refresh_token=82366156b53f4a94b0e25147c8ab47c73e2573e7&grant_type=refresh_token"
+// const allActivitiesAPI = `https://www.strava.com/api/v3/athlete/activities?access_token=${accessToken1}`
+// const activityAPI = ""
 
 //continue working on attributes and changing map color
 mapRender = polyline =>{
     var map = L.map('map',{
         center: [34.07579760955182, -118.36575474764047],
-        zoom: 13,
+        zoom: 12,
         zoomSnap: .1,
         zoomDelta: .4,
         wheelPxPerZoomLevel: 400,
@@ -37,7 +36,7 @@ mapRender = polyline =>{
 
     // mapbox://styles/kmachappy/cl162wrgb001615o2i6699d2y
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-        // attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
         id: 'mapbox/streets-v11',
         tileSize: 512,
@@ -167,11 +166,11 @@ getActivity = access_token => {
     $.get({
         url: url
     }).then(data =>{
-        // console.log(data)
+         console.log(data)
         //console.log(data.splits_standard)
         const splits = data.splits_standard
         // console.log(splits)
-        milesRender(splits, data)
+        milesRender(splits)
         titleDataRender(data)
         avgData(data)
     })
@@ -182,6 +181,8 @@ getActivity = access_token => {
 // make this into a post request 
 // uses refreshToken to get new accessToken
 reAuthToken = () => {
+    const reAuthAPI = "https://www.strava.com/oauth/token?client_id=80013&client_secret=4c3e0e3af32ed51d86a5c7e045fb4fe4422387e9&refresh_token=82366156b53f4a94b0e25147c8ab47c73e2573e7&grant_type=refresh_token"
+
     $.post({
         url: reAuthAPI
     }).then(data =>{
@@ -229,11 +230,6 @@ secondsToTime = seconds => {
     let date = new Date(seconds * 1000).toISOString().substr(11, 8)
     return date
 }
-
-
-
-
-
 
 
 reAuthToken()

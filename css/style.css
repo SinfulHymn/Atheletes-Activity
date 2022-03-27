@@ -5,6 +5,7 @@
     --text-color: #e3e7e5;
     --title-color:  #3F4B45;
     --container-color:  #81768B;
+    --navhover-color: #81B29A; 
 
 }
 
@@ -14,7 +15,7 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-    /* background-color: #283646; */
+    background-color: #283646;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,17 +28,11 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* font-family: "Montserrat", sans-serif; */
+    font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 16px;
     color: #ecf0f1;
     text-decoration: none;
-}
-h1{
-    color: var(--text-color)
-}
-h2{
-    color: var(--pink-color);
 }
 .nav_links, a{
     padding: 0px 20px;
@@ -45,21 +40,43 @@ h2{
     font-size: 20px;
     font-weight: 500;
     color: var(--text-color);
-}
-.nav_links {
-    /* targets nav links and each item */
     display: inline-block;
-    
-    /* puts all the nav links side by side */
     padding: 0px 20px;
-  }
+
+}
 .nav_links a:hover {
-    color: #0088a9;
+    color: var(--navhover-color);
 }
-#map { 
+
+#map{
     height: 550px;
+    float: right;
+    /* position: absolute;
+    right: 0px;*/
     width: 90%; 
+  
 }
+.left-col-container{
+    /* text-align: left; */
+    /* float: left; */
+    left: 0px;
+    width: 50%;
+}
+
+.racedata-container{
+    /* justify-content: center;
+    align-items: center; */
+    text-align: center;
+}
+.miles-container
+h1{
+    color: var(--text-color)
+}
+h2{
+    color: var(--pink-color);
+}
+
+
 #splits{
     /* display: inline-flex; */
     
