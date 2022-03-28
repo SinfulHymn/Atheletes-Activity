@@ -7,7 +7,9 @@ body{
     font-family: "Lato", Helvetica, Arial, sans-serif;
     font-weight: 400;
     line-height: 1.8;
-    color: #000;
+    /* color: #000; */
+    color: #b5b7bf;
+    background-color: #2e2a39;
 }
 main{
     display: block;
@@ -21,14 +23,14 @@ main{
 }
 .main-container{
     max-width: 650px;
-    margin: 40px;
+    margin: 160px;
 }
 .cell-container{
     display: inline-block;
     width: 100%;
-    padding: 0 20px;
+    padding: 0 160px;
     margin: 0;
-    font-size: 16px;
+    font-size: 15px;
     text-align: left;
     vertical-align: top;
 }
@@ -38,7 +40,8 @@ main{
 }
 .text-container{
     font-family: "Ubuntu Mono", Monospace;
-    color: #000;
+    /* color: #cfc7cc; */
+    color: #c9c7cf;
 }
 p{
     margin: 0;
@@ -60,9 +63,15 @@ li.menu-list-item a{
     font-size: 1.1em;
     font-family: "Ubuntu Mono", Monospace;
     /* line-height: 1em; */
-    color: #121111;
+    /* color: #cfc7cc; */
+    color: #c9c7cf;
   }
-
+li.disabled a{
+    
+    pointer-events: none;
+    text-decoration: line-through;
+}
 a{
-    color: #121111;
+    color: #c9c7cf; 
+    /* color: #cfc7cc; */
 }
