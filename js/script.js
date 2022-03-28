@@ -78,12 +78,12 @@ milesRender = splits => {
     const splitsContainer = $('#splits')
     //make a for loop that will append all mile splits
     splits.forEach((mile, index) => {
-        const spanMile = $(`<div id=mile-split${index+1}>`)
+        const spanMile = $(`<div class=mile-split>`)
         let elapsedTime = new Date(mile.elapsed_time * 1000).toISOString().substr(14, 5)
 
         let mph = mpsToMph(mile.average_speed)
 
-        spanMile.html(`<span class="mile-index">Mile: ${mile.split} </span><span class="pace-index"> Pace: ${elapsedTime}/mi </span> <span class="heartrate-index"> HeartRate: ${(mile.average_heartrate).toFixed(0)}/bpm </span> <span class="mph-index">Speed: ${mph.toFixed(2)}/mph`)
+        spanMile.html(`<td class="mile-index">Mile: ${mile.split}</td> <td class="pace-index"> Pace: ${elapsedTime}/mi </td> <td class="heartrate-index"> HeartRate: ${(mile.average_heartrate).toFixed(0)}/bpm </td> <td class="mph-index">Speed: ${mph.toFixed(2)}/mph</td>`)
         splitsContainer.append(spanMile)
     })
 }

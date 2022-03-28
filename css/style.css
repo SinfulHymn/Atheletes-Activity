@@ -59,25 +59,37 @@ header{
 .left-col-container{
     /* text-align: left; */
     /* float: left; */
-    left: 0px;
-    width: 50%;
+    /* left: 0px; */
+    /* width: 50%; */
 }
 
-.racedata-container{
-    /* justify-content: center;
-    align-items: center; */
-    text-align: center;
-}
-.miles-container
+
 h1{
     color: var(--text-color)
 }
 h2{
     color: var(--pink-color);
 }
+.racedata-container{
+    width: 90%;
+}
 
+.miles-container{
+    width: 90%;
+}
 
 #splits{
-    /* display: inline-flex; */
+    /* width: 100%; */
     
+}
+.mile-split{
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+span{   
+    /* margin: 0px 5%; */  
+}
+.mile-index{
+    margin: 10px 30% 10px 10px ;
 }

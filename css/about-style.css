@@ -1,0 +1,68 @@
+*{
+
+}
+body{
+    
+    margin: 0 auto;
+    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #000;
+}
+main{
+    display: block;
+}
+.main{
+    display: block;
+    padding: 0;
+    margin: 0 -20px;
+    font-size: 0;
+    text-align: left;
+}
+.main-container{
+    max-width: 650px;
+    margin: 40px;
+}
+.cell-container{
+    display: inline-block;
+    width: 100%;
+    padding: 0 20px;
+    margin: 0;
+    font-size: 16px;
+    text-align: left;
+    vertical-align: top;
+}
+.data-container{
+    display: block;
+    width: 400px;
+}
+.text-container{
+    font-family: "Ubuntu Mono", Monospace;
+    color: #000;
+}
+p{
+    margin: 0;
+    font-weight: 400;
+}
+.text-container p {
+    margin-bottom: 10px;
+}
+.menu-list{
+    margin: 20px 0;
+padding-left: 0;
+list-style: square inside;
+}
+.menu-list li{
+    padding: 4px 0;
+}
+li.menu-list-item a{
+    font-weight: 100;
+    font-size: 1.1em;
+    font-family: "Ubuntu Mono", Monospace;
+    /* line-height: 1em; */
+    color: #121111;
+  }
+
+a{
+    color: #121111;
+}
