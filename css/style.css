@@ -6,6 +6,8 @@
     --title-color:  #3F4B45;
     --container-color:  #81768B;
     --navhover-color: #81B29A; 
+    --leftcol-color: #99ffcc;
+    --pasterblue-color: #99ffff;
 
 }
 html{
@@ -63,15 +65,17 @@ header{
     width: 100%;
 }
 .left-col-container{
-    
+    background-color: ;
     display: flex;
     flex-direction: column;
-    width: 30em;
-    color: #a1b29f;
-    font-size: 1.3em;
+    width: 25em;
+    color: var(--leftcol-color);
+    font-size: 1.2em;
     
 }
 .left-data{
+    /* border: 1px solid; */
+    border-color: #A29199;
     /* this makes the divs expand fully into the left-col-container */
     flex-grow: 1;
     text-align: left;
@@ -87,7 +91,11 @@ header{
   
 }
 
-
+#bottom{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 
 
@@ -98,13 +106,28 @@ h2{
     color: var(--pink-color);
 }
 .racedata-container{
-    width: 90%;
+    width: 100%;
 }
+#main-data-row1{
+    display: flex;
+    justify-content: center;
 
+}
+#total-distance, #elapsed-time{
+    color: var(--pasterblue-color);
+    width: 100%;
+    font-size: large;
+}
 .miles-container{
     text-align: center;
-    width: 90%;
+    width: 100%;
 
+}
+.container-str{
+    display: flex;
+}
+.blank{
+    width: 20em;
 }
 
 #splits{
@@ -128,10 +151,13 @@ span{
 }
 
 table, th,td{
-    border: 1px solid;
+    /* border: 1px solid; */
+    
     
 }
 table{
     width: 100%;
     border-collapse: collapse;
+    cell
+
 }
