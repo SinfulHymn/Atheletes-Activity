@@ -52,21 +52,25 @@ header{
 .nav_links a:hover {
     color: var(--navhover-color);
 }
-.left-col-container{
-    text-align: left;
-    /* float: left; */
-    /* left: 0px; */
-    width: 50%;
-    color: #283646;
-    font-size: 24px;
-}
+
 #top{
     /* text-align: center; */
 }
-
 #middle{
     display: flex;
     width: 100%;
+}
+.left-col-container{
+    
+    width: 40%;
+    color: #a1b29f;
+    font-size: 1.3em;
+}
+.left-data{
+    flex-grow: 1;
+    text-align: left;
+    margin-top: 25px; 
+    margin-bottom: 25px;
 }
 #map{
     height: 550px;
@@ -76,6 +80,10 @@ header{
     width: 100%; 
   
 }
+
+
+
+
 
 h1{
     color: var(--text-color)

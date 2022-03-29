@@ -74,16 +74,32 @@ dataRender = data0 => {
 }
 
 milesRender = splits => {
-    // console.log(splits)
+    
+    
+    const table = $('table')
+    const thead = $('<thead>')
+    table.append(thead)
+    const mile = $('<th>Mile: </th>')
+    thead.append(mile)
+    const pace = $('<th>Pace: min/mi</th>')
+    thead.append(pace)
+    const heartrate = $('<th>HeartRate: BPM</th>')
+    thead.append(heartrate)
+    const speed = $('<th>Speed: mph</th>')
+    thead.append(speed)
+
+    const tbody = $('<tbody id="splits"></tbody>')
+    table.append(tbody)
+    
     const splitsContainer = $('#splits')
     //make a for loop that will append all mile splits
     splits.forEach((mile, index) => {
-        const spanMile = $(`<div class=mile-split>`)
+        const spanMile = $(`<tr class=mile-split>`)
         let elapsedTime = new Date(mile.elapsed_time * 1000).toISOString().substr(14, 5)
 
         let mph = mpsToMph(mile.average_speed)
 
-        spanMile.html(`<td class="mile-index">Mile: ${mile.split}</td> <td class="pace-index"> Pace: ${elapsedTime}/mi </td> <td class="heartrate-index"> HeartRate: ${(mile.average_heartrate).toFixed(0)}/bpm </td> <td class="mph-index">Speed: ${mph.toFixed(2)}/mph</td>`)
+        spanMile.html(`<td class="mile-index"> ${mile.split}</td> <td class="pace-index"> Pace: ${elapsedTime}/mi </td> <td class="heartrate-index"> HeartRate: ${(mile.average_heartrate).toFixed(0)}/bpm </td> <td class="mph-index">Speed: ${mph.toFixed(2)}/mph</td>`)
         splitsContainer.append(spanMile)
     })
 }
@@ -98,29 +114,29 @@ avgData = data =>{
     console.log(data)
     const leftColm = $('.left-col-container')
     const totalMile = convertToMiles(data.distance).toFixed(2)
-    const $name = $(`<div id=left-name>Name: ${data.name}</div>`)
+    const $name = $(`<div class="left-data left-name">Name: ${data.name}</div>`)
     leftColm.append($name)
     let elapsedTime = new Date(data.elapsed_time * 1000).toISOString().substr(12,8)
-    const $time = $(`<div id=left-time>Total Time: ${elapsedTime}</div>`)
+    const $time = $(`<div class="left-data left-time">Total Time: ${elapsedTime}</div>`)
     leftColm.append($time)
-    const $distance = $(`<div id=left-dist>Total Distance: ${totalMile}/mi</div>`)
+    const $distance = $(`<div class="left-data left-dist">Total Distance: ${totalMile}/mi</div>`)
     leftColm.append($distance)
-    const $calories = $(`<div id=left-calories>Total Calories: ${data.calories}/cal</div>`)
+    const $calories = $(`<div class="left-data left-calories">Total Calories: ${data.calories}/cal</div>`)
     leftColm.append($calories)
-    const $heartRate = $(`<div id=left-heart>Avg Heart Rate: ${data.average_heartrate.toFixed(0)}/bpm</div>`)
+    const $heartRate = $(`<div class="left-data left-heart">Avg Heart Rate: ${data.average_heartrate.toFixed(0)}/bpm</div>`)
     leftColm.append($heartRate)
     const avgmph = mpsToMph(data.average_speed).toFixed(2)
-    const $speed = $(`<div id=left-speed>Avg Speed: ${avgmph}/mph</div>`)
+    const $speed = $(`<div class="left-data left-speed">Avg Speed: ${avgmph}/mph</div>`)
     leftColm.append($speed)
     const feet = metersToFeet(data.elev_high).toFixed(2)
-    const $highElev = $(`<div id=left-highelev>Highest Elevation: ${feet}/ft </div>`)
+    const $highElev = $(`<div class="left-data left-highelev">Highest Elevation: ${feet}/ft </div>`)
     leftColm.append($highElev)
-    const $maxheart = $(`<div id=left-maxheart>Max Heart Rate: ${data.max_heartrate}/bpm</div>`)
+    const $maxheart = $(`<div class="left-data left-maxheart">Max Heart Rate: ${data.max_heartrate}/bpm</div>`)
     leftColm.append($maxheart)
     const maxmph = mpsToMph(data.max_speed).toFixed(2)
-    const $maxspeed = $(`<div id=left-maxspped>Max Speed: ${maxmph}/mph</div>`)
+    const $maxspeed = $(`<div class="left-data left-maxspped">Max Speed: ${maxmph}/mph</div>`)
     leftColm.append($maxspeed)
-    const $device = $(`<div id=left-device>Device Used: ${data.device_name}</div>`)
+    const $device = $(`<div class="left-data left-device">Device Used: ${data.device_name}</div>`)
     leftColm.append($device)
 
 
