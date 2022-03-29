@@ -196,6 +196,10 @@ reAuthToken = () => {
     })
 }
 
+
+/////////////////////////
+// conversion functions
+/////////////////////////
 // converts epoch timestamp to a human readable timestamp
 convertEpoch = epochTimeStamp =>{
     let dateToMilli = new Date(epochTimeStamp*1000),
@@ -222,7 +226,6 @@ convertEpoch = epochTimeStamp =>{
     
     return timeStamp            
 }
-
 convertToMiles = meters => meters*0.000621371192
 metersToFeet = meters => meters*3.2808
 mpsToMph = mps => Math.round(mps * 3600 / 1610.3*1000)/1000
@@ -230,7 +233,9 @@ secondsToTime = seconds => {
     let date = new Date(seconds * 1000).toISOString().substr(11, 8)
     return date
 }
-
+/////////////////////////
+// conversion functions
+/////////////////////////
 
 reAuthToken()
 // make the box hover at the start, add the link from the start to allow the user to login and then his data will then propagate on the page .

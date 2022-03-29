@@ -8,8 +8,12 @@
     --navhover-color: #81B29A; 
 
 }
-
+html{
+    font-size: 100%;
+    box-sizing: border-box;
+}
 body{
+    
     color: var(--text-color);
     background-image: linear-gradient(to top, #3d3a40, #3b3941, #383842, #353744, #303645, #343d4c, #374353, #3b4a5a, #4a5a69, #596b79, #697c89, #7a8d99);
     background-repeat: no-repeat;
@@ -50,14 +54,14 @@ header{
 
 #map{
     height: 550px;
-    float: right;
+    /* float: right; */
     /* position: absolute;
     right: 0px;*/
     width: 90%; 
   
 }
 .left-col-container{
-    /* text-align: left; */
+    text-align: left;
     /* float: left; */
     /* left: 0px; */
     /* width: 50%; */
@@ -92,4 +96,7 @@ span{
 }
 .mile-index{
     margin: 10px 30% 10px 10px ;
+}
+.pace-index{
+    
 }
