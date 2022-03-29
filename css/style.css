@@ -30,8 +30,9 @@ body{
     
 }
 header{
-    /* display: flex; */
+    display: flex;
     justify-content: space-between;
+    justify-content: center;
     align-items: center;
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
@@ -58,19 +59,24 @@ header{
 }
 #middle{
     display: flex;
+    /* justify-content: center; */
     width: 100%;
 }
 .left-col-container{
     
-    width: 40%;
+    display: flex;
+    flex-direction: column;
+    width: 30em;
     color: #a1b29f;
     font-size: 1.3em;
+    
 }
 .left-data{
+    /* this makes the divs expand fully into the left-col-container */
     flex-grow: 1;
     text-align: left;
-    margin-top: 25px; 
-    margin-bottom: 25px;
+    /* margin-top: 10px;  */
+    /* margin-bottom: 10px; */
 }
 #map{
     height: 550px;
@@ -119,4 +125,13 @@ span{
 }
 .pace-index{
     
+}
+
+table, th,td{
+    border: 1px solid;
+    
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
 }
