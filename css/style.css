@@ -9,27 +9,28 @@
 
 }
 html{
-    font-size: 100%;
-    box-sizing: border-box;
+    /* font-size: 100%; */
+    /* box-sizing: border-box; */
 }
 body{
-    
+    font-family: "Montserrat", sans-serif;
     color: var(--text-color);
     background-image: linear-gradient(to top, #3d3a40, #3b3941, #383842, #353744, #303645, #343d4c, #374353, #3b4a5a, #4a5a69, #596b79, #697c89, #7a8d99);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     background-color: #283646;
-    display: flex;
+    text-align: center;
+
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    font-family: "Montserrat", sans-serif;
+    text-align: center; */
     
 }
 header{
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
     align-items: center;
     font-family: "Montserrat", sans-serif;
@@ -51,22 +52,30 @@ header{
 .nav_links a:hover {
     color: var(--navhover-color);
 }
+.left-col-container{
+    text-align: left;
+    /* float: left; */
+    /* left: 0px; */
+    width: 50%;
+    color: #283646;
+    font-size: 24px;
+}
+#top{
+    /* text-align: center; */
+}
 
+#middle{
+    display: flex;
+    width: 100%;
+}
 #map{
     height: 550px;
     /* float: right; */
     /* position: absolute;
     right: 0px;*/
-    width: 90%; 
+    width: 100%; 
   
 }
-.left-col-container{
-    text-align: left;
-    /* float: left; */
-    /* left: 0px; */
-    /* width: 50%; */
-}
-
 
 h1{
     color: var(--text-color)
@@ -79,7 +88,9 @@ h2{
 }
 
 .miles-container{
+    text-align: center;
     width: 90%;
+
 }
 
 #splits{
@@ -87,6 +98,7 @@ h2{
     
 }
 .mile-split{
+    /* text-align: center; */
     margin: 10px 0;
     font-size: 18px;
 }
