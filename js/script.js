@@ -99,7 +99,7 @@ milesRender = splits => {
 
         let mph = mpsToMph(mile.average_speed)
 
-        spanMile.html(`<td class="mile-index">${mile.split}</td> <td class="pace-index">${elapsedTime}/mi </td> <td class="heartrate-index">${(mile.average_heartrate).toFixed(0)}/bpm </td> <td class="mph-index">${mph.toFixed(2)}/mph</td>`)
+        spanMile.html(`<td class="mile-split-data">${mile.split}</td> <td class="mile-split-data">${elapsedTime}/mi </td> <td class="mile-split-data">${(mile.average_heartrate).toFixed(0)}/bpm </td> <td class="mile-split-data">${mph.toFixed(2)}/mph</td>`)
         splitsContainer.append(spanMile)
     })
 }

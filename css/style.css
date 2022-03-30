@@ -127,7 +127,7 @@ h2{
     display: flex;
 }
 .blank{
-    width: 20em;
+    width: 25em;
 }
 
 #splits{
@@ -136,20 +136,18 @@ h2{
 }
 .mile-split{
     /* text-align: center; */
-    margin: 10px 0;
-    font-size: 18px;
+    /* margin: 10px 0; */
+    /* padding: 10px; */
+    font-size: 20px;
 }
 
 span{   
     /* margin: 0px 5%; */  
 }
-.mile-index{
-    margin: 10px 30% 10px 10px ;
+.mile-split-data{
+    font-size: 12;
+    padding: 8px;
 }
-.pace-index{
-    
-}
-
 table, th,td{
     /* border: 1px solid; */
     
@@ -158,6 +156,7 @@ table, th,td{
 table{
     width: 100%;
     border-collapse: collapse;
-    cell
+
 
 }
+/* margin left on the table */
