@@ -5,11 +5,11 @@
     <img src="https://i.imgur.com/HEdvaxd.png" alt="Logo" width="200" height="80">
   </a>
 
-  <h1 align="center">Athelets Activity Page</h1>
+  <h2 align="center">Athelets Activity Page</h2>
 
   <p align="center">
-    <h2>View all your Athelitic Activity in just one page!</h2>
-    <a href="https://kmachappy.github.io/"><strong><h2>Live Website - Marathon View</h2></strong></a>
+    View all your Athelitic Activity in just one page!
+    <a href="https://kmachappy.github.io/"><strong>Live Website - Marathon View</strong></a>
     <a href="https://developers.strava.com/">Strava API</a>
     ·
     <a href="https://leafletjs.com/SlavaUkraini/reference.html">Leaflet API</a>
@@ -46,6 +46,8 @@
     - avg hr, avg pace, avg run, best miles, longest milage, 
 
 -	Atheletes need an easy to access website to view their atheletic activities across different plateforms and their visualization.
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 
 # Reference Activity I am displaying. 
