@@ -9,6 +9,7 @@
 
   <p align="center">
     View all your Athelitic Activity in just one page!
+    <br />
     <a href="https://kmachappy.github.io/"><strong>Live Website - Marathon View</strong></a>
     <a href="https://developers.strava.com/">Strava API</a>
     ·
