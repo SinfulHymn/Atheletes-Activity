@@ -8,7 +8,7 @@
 <h3 align="center">Athletes Activity Page</h3>
   
   <p align="center">
-    View all your Athelitic Activity in just one page!
+    View all your Athelitic Activities in just one page!
     <br />
     <a href="https://kmachappy.github.io/"><strong>Live Website - Marathon View</strong></a>
     <br />
