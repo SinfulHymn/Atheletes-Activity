@@ -51,18 +51,14 @@
     </a>
 </div>
 
-- With the authorization page we mimic as if we were logging into an app that will use our authorization login
+- With the authorization page we mimic as if we were logging into an app that will use our authorization login 
 
-- this is ususall
-
-- In progress: users will be able to login and authorize strava to allow me to use and propagated their own use data
-
-- users will be able to see past activities with map data
+- Once this authorization is done, users will be able to see activities with map data and a poly line of the specific data
 
 - user will be able to see their average data points and highest data point
     - avg hr, avg pace, avg run, best miles, longest milage, 
 
--	Atheletes need an easy to access website to view their atheletic activities across different plateforms and their visualization.
+- Atheletes need an easy to access website to view their atheletic activities across different plateforms and their visualization.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
@@ -92,11 +88,20 @@
 
 # Roadmap and future Implementations
 
-- add authorization page so the user could import their data on to the page
+- add authorization page so the user could import their peronal data on to the page
 - add poly line to all user activities
 - Create a roadmap of all the miles onto the map.
     - When user hovers/clicks a mile or activity it will highlight and zoom onto location on map
 - add more data points from different apps
 - change user interface.
+- In progress: users will be able to login and authorize strava to allow me to use and propagated their own use data
 
 
+
+# User Story
+
+- You just finished your marathon, run, or any activity and imported your data on strava. 
+- now you want to see your data on a page 
+- you click my Athelets views and authorize Atheletes view to connect to strave
+- once that authorization is done your activity data propagates on the page
+- 
