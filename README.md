@@ -5,7 +5,7 @@
     <img src="https://i.imgur.com/HEdvaxd.png" alt="Logo" width="200" height="80">
   </a>
 
-<h3 align="center">Athelets Activity Page</h3>
+<h3 align="center">Athletes Activity Page</h3>
   
   <p align="center">
     View all your Athelitic Activity in just one page!
