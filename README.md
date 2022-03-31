@@ -28,7 +28,7 @@
 </div>
 
 # Goal and what this tries to achieve
-- Athelets today do not have a centralized site to view their Atheletic activities from runs, cycling and swimming. Today Atheletes depend on their phone to view their activities, that are tracked by a plethora of activity tracking apps such as Strava, Nike - Run Club, Asics - RunKeeper, UnderArmor - Map my Run, AllTrails, ect. 
+- Athelets today do not have a centralized site to view their Atheletic activities from runs, cycling and swimming. Today Atheletes depend on their phone to view their activities, that are tracked by a plethora of activity-tracking apps such as Strava, Nike - Run Club, Asics - RunKeeper, UnderArmor - Map my Run, AllTrails, ect. 
 
 - The goal of this page is to gather data from all activity trackers and compile all the information into one webpage. Information from Strava, Nike - Run Club, Asics - RunKeeper, UnderArmor - Map my Run, AllTrails, ect. 
 
