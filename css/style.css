@@ -65,7 +65,7 @@ header{
     width: 100%;
 }
 .left-col-container{
-    background-color: ;
+    /* background-color: ; */
     display: flex;
     flex-direction: column;
     width: 25em;

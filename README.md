@@ -95,7 +95,7 @@
 - add more data points from different apps
 - change user interface.
 - In progress: users will be able to login and authorize strava to allow me to use and propagated their own use data
-
+- add more map styling and interactiveness
 
 
 # User Story
