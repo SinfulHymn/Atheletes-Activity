@@ -30,15 +30,30 @@
 # Goal and what this tries to achieve
 - Athelets today do not have a centralized site to view their Atheletic activities from runs, cycling and swimming. Today Atheletes depend on their phone to view their activities, that are tracked by a plethora of activity tracking apps such as Strava, Nike - Run Club, Asics - RunKeeper, UnderArmor - Map my Run, AllTrails, ect. 
 
-- The goal of this page is to be able to pull all data from all apps and display all Activity information in one centralized page 
+- The goal of this page is to gather data from all activity trackers and compile all the information into one webpage. Information from Strava, Nike - Run Club, Asics - RunKeeper, UnderArmor - Map my Run, AllTrails, ect. 
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 # Current State
 
-- In this app we will pull Athelete data from the strava api and display data on a centralized webpage
+- In this app we will get a singular athelete user data and display data on page and map api. We use my data for the example
 
-- Ideally we would want to be a
+- Because strava doesn't use a standard api key and follow oauth2 and tokens for api calls. I had to write a function refreshed my access_key which expires every 6 hours
+    
+- To do this we will be utilizing the strava api app to get user activity data 
+    
+- hardships of api oauth2 authentication code and authorizations, tokens and token refresh
+    - I have to generate authorization code from an oauth2 authorization page
+<div align="center">
+    <a href="https://www.strava.com/oauth/authorize?client_id=80013&response_type=code&redirect_uri=http://localhost/exchange_token&approval_prompt=force&scope=read_all">
+        <img src="https://i.imgur.com/wMGwQUp.png" alt="Logo" width="250" height="250">
+    </a>
+</div>
+
+- With the authorization page we mimic as if we were logging into an app that will use our authorization login
+
+- this is ususall
 
 - In progress: users will be able to login and authorize strava to allow me to use and propagated their own use data
 
@@ -62,7 +77,7 @@
  - **[mapbox API](https://leafletjs.com/SlavaUkraini/)**.
 
  # Technologies used 
- - OAuth2 for authentication and token refresh
+ - OAuth2 for authorization and token refresh
  - Javascript
  - HTML
  - CSS
@@ -77,6 +92,11 @@
 
 # Roadmap and future Implementations
 
-
+- add authorization page so the user could import their data on to the page
+- add poly line to all user activities
+- Create a roadmap of all the miles onto the map.
+    - When user hovers/clicks a mile or activity it will highlight and zoom onto location on map
+- add more data points from different apps
+- change user interface.
 
 
