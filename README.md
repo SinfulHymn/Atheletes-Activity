@@ -23,7 +23,7 @@
 # About
 <div align="center">
     <a href="https://github.com/othneildrew/Best-README-Template">
-        <img src="https://i.imgur.com/HGX8twB.png" alt="Logo" width="600" height="400">
+        <img src="https://i.imgur.com/u4yhvGp.png" alt="Logo" width="600" height="600">
     </a>
 </div>
 
