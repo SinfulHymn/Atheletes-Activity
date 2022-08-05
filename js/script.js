@@ -1,13 +1,59 @@
-// let accessToken2,
-//     accessToken1 = "ff3dc6a967c906ba06d917aa822e1fd711d44e8a",
-//     refreshToken = "",
-//     client_id = "80013"
+//first make sure token is authorized to be able to access strava
+// since the access token expires I am making sure i always get a new valid access token 
+// make this into a post request 
+// uses refreshToken to get new accessToken
+function reAuthToken(){
+    const reAuthAPI = "https://www.strava.com/oauth/token?client_id=80013&client_secret=4c3e0e3af32ed51d86a5c7e045fb4fe4422387e9&refresh_token=82366156b53f4a94b0e25147c8ab47c73e2573e7&grant_type=refresh_token"
 
-// const allActivitiesAPI = `https://www.strava.com/api/v3/athlete/activities?access_token=${accessToken1}`
-// const activityAPI = ""
+    $.post({
+        url: reAuthAPI
+    }).then(data =>{
+        const accessToken = data.access_token
+         //console.log(data.access_token)
+        // console.log(data)
+        console.log(`${convertEpoch(data.expires_at)} : ${data.access_token}`)
+        //pipe access_token to get all activities
+        getAllActivities(accessToken)
+        getActivity(accessToken)
+    })
+}
+
+//api request that get all activites from strava
+function getAllActivities(access_token){
+    let url =`https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}`
+    // getRequest(allActivitiesLink)
+    $.get({
+        url: url
+    }).then(data =>{
+        // console.log('getall activities',data)
+        // const polyline = 
+        
+        dataRender(data[0]) 
+    })
+}
+// get the single activity I am focusing on 
+function getActivity(access_token){
+    let url = `https://www.strava.com/api/v3/activities/6867917209?access_token=${access_token}`
+    $.get({
+        url: url
+    }).then(data =>{
+        // console.log(data)
+        //console.log(data.splits_standard)
+        const splits = data.splits_standard
+        // console.log(splits)
+        milesRender(splits)
+        titleDataRender(data)
+        avgData(data)
+        let polyline = data.map.polyline
+        // console.log('polyline', polyline)
+        mapRender(polyline) 
+    })
+
+    
+}
 
 //continue working on attributes and changing map color
-mapRender = polyline =>{
+function mapRender(polyline){
     var map = L.map('map',{
         center: [34.07579760955182, -118.36575474764047],
         zoom: 12,
@@ -16,23 +62,13 @@ mapRender = polyline =>{
         wheelPxPerZoomLevel: 400,
         
     })
+    // console.log(map)
     
-    var marker = L.marker([34.07579760955182, -118.36575474764047]).addTo(map)
+    L.marker([34.07579760955182, -118.36575474764047]).addTo(map)
 
-    // var circle = L.circle([51.508, -0.11], {
-    //     color: 'red',
-    //     fillColor: '#f03',
-    //     fillOpacity: 0.5,
-    //     radius: 500
-    // }).addTo(map);
-    // var polygon = L.polygon([
-    //     [51.509, -0.08],
-    //     [51.503, -0.06],
-    //     [51.51, -0.047]
-    // ]).addTo(map);
-    var coordinates = L.Polyline.fromEncoded(polyline).getLatLngs()
+    
     //array of coordinate of the miles
-    //console.log(coordinates)
+    // console.log(coordinates)
 
     // mapbox://styles/kmachappy/cl162wrgb001615o2i6699d2y
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -45,7 +81,7 @@ mapRender = polyline =>{
     }).addTo(map);
 
     L.polyline(
-        coordinates,
+        L.Polyline.fromEncoded(polyline).getLatLngs(),
         {
             color: "green",
             weight: 5,
@@ -57,7 +93,8 @@ mapRender = polyline =>{
 
 // render data[0] onto document doesn't contain all activity details 
 // all activities seems to not put all data by default like activity by id
-dataRender = data0 => {
+
+function dataRender(data0){
     // console.log(data0)
     $('#marathon-title').text(data0.name)
     const miles = convertToMiles(data0.distance).toFixed(2)
@@ -72,8 +109,7 @@ dataRender = data0 => {
     $date.text(` Elapsed Time: ${elapsedTime}`)
     $('#main-data-row1').append($date)
 }
-
-milesRender = splits => {
+function milesRender(splits){
     
     
     const table = $('table')
@@ -103,15 +139,14 @@ milesRender = splits => {
         splitsContainer.append(spanMile)
     })
 }
-
-titleDataRender = data =>{
+function titleDataRender(data){
     // console.log(data)
     $('#marathon-subtitle').text(data.description)
     $('#splits-title').text('Miles Splits')
 }
 
-avgData = data =>{
-    console.log(data)
+function avgData(data){
+    // console.log(data)
     const leftColm = $('.left-col-container')
     const totalMile = convertToMiles(data.distance).toFixed(2)
     const $name = $(`<div class="left-data left-name">Name: ${data.name}</div>`)
@@ -147,16 +182,18 @@ avgData = data =>{
 
 //how to split the data from both apis here
 //ajax request from getAllActivities data
-getRequest = url =>{
+
+function getRequest(url){
     $.get({
         url: url
     }).then(data =>{
-        console.log(data)
+        // console.log(data)
         //console.log(data[0].map.summary_polyline)
         // loop through all objects in array to list all runs and data
         // data.forEach((Element, index) => {
         //     console.log(index)
         // })
+        console.log(data)
         mapRender(data[0].map.summary_polyline) 
         dataRender(data[0])
         // return data
@@ -164,60 +201,20 @@ getRequest = url =>{
     })
 }
 
-//api request that get all activites
-getAllActivities = access_token => {
-    let url =`https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}`
-    // getRequest(allActivitiesLink)
-    $.get({
-        url: url
-    }).then(data =>{
-        //console.log(data)
-        mapRender(data[0].map.summary_polyline) 
-        dataRender(data[0]) 
-    })
-}
 
-getActivity = access_token => {
-    let url = `https://www.strava.com/api/v3/activities/6867917209?access_token=${access_token}`
-    $.get({
-        url: url
-    }).then(data =>{
-         console.log(data)
-        //console.log(data.splits_standard)
-        const splits = data.splits_standard
-        // console.log(splits)
-        milesRender(splits)
-        titleDataRender(data)
-        avgData(data)
-    })
 
-    
-}
-// since the access toke expires I am making sure i always get a new valid access token 
-// make this into a post request 
-// uses refreshToken to get new accessToken
-reAuthToken = () => {
-    const reAuthAPI = "https://www.strava.com/oauth/token?client_id=80013&client_secret=4c3e0e3af32ed51d86a5c7e045fb4fe4422387e9&refresh_token=82366156b53f4a94b0e25147c8ab47c73e2573e7&grant_type=refresh_token"
 
-    $.post({
-        url: reAuthAPI
-    }).then(data =>{
-        const accessToken = data.access_token
-         //console.log(data.access_token)
-        // console.log(data)
-        console.log(`${convertEpoch(data.expires_at)} : ${data.access_token}`)
-        //pipe access_token to get all activities
-        getAllActivities(accessToken)
-        getActivity(accessToken)
-    })
-}
+
+
+
 
 
 /////////////////////////
 // conversion functions
 /////////////////////////
 // converts epoch timestamp to a human readable timestamp
-convertEpoch = epochTimeStamp =>{
+
+function convertEpoch(epochTimeStamp){
     let dateToMilli = new Date(epochTimeStamp*1000),
     year = dateToMilli.getFullYear(),
     month = ('0' + (dateToMilli.getMonth() + 1)).slice(-2),

@@ -1,0 +1,59 @@
+personal token
+Access_token: 254bfc6327717b6cfdbd6a74dad31eabd4182abb
+
+ client_secret: 4c3e0e3af32ed51d86a5c7e045fb4fe4422387e9
+id: 80013
+
+curl -X GET \
+https://www.strava.com/api/v3/athlete \
+-H 'Authorization: Bearer 254bfc6327717b6cfdbd6a74dad31eabd4182abb'
+
+Oath2 link for authorization
+http://www.strava.com/oauth/authorize?client_id=80013&response_type=code&redirect_uri=http://localhost/exchange_token&approval_prompt=force&scope=read_all
+
+oath autorization code
+f3df2a85fc7a3b0bbec19d9d71e1c84a8a4adbed
+4b2bb3a16c99858ac9856429c208cbb20a1c9e47
+
+curl -X POST https://www.strava.com/oauth/token \
+	-F client_id=YOURCLIENTID \
+	-F client_secret=YOURCLIENTSECRET \
+	-F code=AUTHORIZATIONCODE \
+	-F grant_type=authorization_code
+
+
+
+curl -X POST https://www.strava.com/oauth/token \
+	-F client_id=80013 \
+	-F client_secret=4c3e0e3af32ed51d86a5c7e045fb4fe4422387e9 \
+	-F code=cfa3ddd66f3854dc79f090937c13b6375a5d79e1 \
+	-F grant_type=authorization_code
+
+-------------------------------------------------------------------------------
+ - Get authorization code from authorizatino page. This is a one time, manual step.
+paste the below code in a browser, hit enter then grab the "code" part form the resulting url.
+
+1. https://www.strave.com/oauth/authorize?client_id=80013&redirect_uri=http://localhost&response_type=code&scope=activity:read_all
+
+2. authorization code: 661b485985e8ec640acaf85d44aaa7d9928fa9a4
+
+ - Exchange authorization code for access token & refresh token
+ 3. https://www.strava.com/oauth/token?client_id=[id]&client_secret=[token]&code=[token]
+&grant_type=authorization_code
+
+https://www.strava.com/oauth/token?client_id=80013&client_secret=4c3e0e3af32ed51d86a5c7e045fb4fe4422387e9&code=661b485985e8ec640acaf85d44aaa7d9928fa9a4
+&grant_type=authorization_code
+ 
+ 
+ 4. Access token after post
+ access token: e66fdd367ede0cb7b55ef6812d22ad39a35a6ab6
+ refresh_token: 82366156b53f4a94b0e25147c8ab47c73e2573e7
+ 
+ 5. view you activities using the acess oken just received
+ https://www.strava.com/api/v3/athlete/activities?access_token=e66fdd367ede0cb7b55ef6812d22ad39a35a6ab6
+ 
+ 6. Use refresh token to get new access tokens 
+ https://www.strava.com/oauth/token?client_id=80013&client_secret=4c3e0e3af32ed51d86a5c7e045fb4fe4422387e9&refresh_token=82366156b53f4a94b0e25147c8ab47c73e2573e7&grant_type=refresh_token
+ 
+  https://www.strava.com/oauth/token?client_id=80013&client_secret=4c3e0e3af32ed51d86a5c7e045fb4fe4422387e9&refresh_token=82366156b53f4a94b0e25147c8ab47c73e2573e7&grant_type=refresh_token
+ 
