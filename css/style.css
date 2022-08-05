@@ -10,10 +10,7 @@
     --pasterblue-color: #99ffff;
 
 }
-html{
-    /* font-size: 100%; */
-    /* box-sizing: border-box; */
-}
+
 body{
     font-family: "Montserrat", sans-serif;
     color: var(--text-color);
@@ -23,7 +20,7 @@ body{
     background-position: center;
     background-color: #283646;
     text-align: center;
-
+    margin: 0 10% ;
     /* display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,16 +34,30 @@ header{
     justify-content: center;
     align-items: center;
     font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    font-size: 16px;
+    /* font-weight: 500; */
+    /* font-size: 16px; */
     color: #ecf0f1;
     text-decoration: none;
+    margin: 20px;
 }
-.nav_links, a{
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.nav_links{
+    min-width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav_links>a{
+    /* flex: 3 1 0; */
     padding: 0px 20px;
     text-decoration: none;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: large;
+    /* font-weight: 500; */
     color: var(--text-color);
     display: inline-block;
     padding: 0px 20px;
@@ -160,3 +171,57 @@ table{
 
 }
 /* margin left on the table */
+
+
+@media screen and (max-width: 600px){
+body{
+    margin: 10px;
+}
+
+
+nav{
+    margin: 0 ;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    /* align-items: stretch; */
+    /* justify-content: center; */
+}
+
+.nav_links{
+    padding: 0;
+    display: flex;
+    min-width: 0;
+    /* justify-content: space-between; */
+    
+}
+.nav_links>a{
+    flex:1 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: medium;
+}
+
+
+.left-col-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: medium;
+}
+
+
+#middle{
+    display: flex;
+    flex-wrap: wrap;
+}
+.blank{
+    display: none;
+}
+#map{
+    height: 500px;
+}
+
+}
